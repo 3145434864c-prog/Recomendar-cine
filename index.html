@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="video_inicial/logo.png" type="logo/png" />
+  <title>𝑩𝒊𝒆𝒏𝒗𝒆𝒏𝒊𝒅𝒐𝒔 𝒂𝒍 𝒄𝒊𝒏𝒆</title>
+</head>
+
+<body>
+  <img src="video_inicial/Analysing Movie Posters Educational Presentation in Lilac Red Illustrative Style .png"
+    alt="" />
+
+  <h1 align="center">
+    <font color="red" size="7" face="Arial Black">
+      🎬 BIENVENIDOS AL CINE 🎬
+    </font>
+  </h1>
+
+  <center>
+    <input type="number" id="edad" placeholder="Ingrese su edad" />
+  </center>
+
+  <center>
+    <button onclick="recomendar('comedia')" style="
+          background-color: orange;
+          color: white;
+          font-size: 16px;
+          padding: 10px;
+          margin: 5px;
+        ">
+      🎭 Comedia
+    </button>
+    <button onclick="recomendar('animada')" style="
+          background-color: green;
+          color: white;
+          font-size: 16px;
+          padding: 10px;
+          margin: 5px;
+        ">
+      🎬 Animada
+    </button>
+    <button onclick="recomendar('accion')" style="
+          background-color: rgb(40, 54, 248);
+          color: white;
+          font-size: 16px;
+          padding: 10px;
+          margin: 5px;
+        ">
+      💥 Acción
+    </button>
+    <button onclick="recomendar('adultos')" style="
+          background-color: black;
+          color: white;
+          font-size: 16px;
+          padding: 10px;
+          margin: 5px;
+        ">
+      🔞 +18
+    </button>
+  </center>
+
+  <h2 align="center">Nuestra recomendación</h2>
+  <h3 id="recomendacion" align="center"></h3>
+  <center>
+    <img id="imagenPelicula" src="" alt="" width="300" style="border-radius: 10px" />
+  </center>
+
+  <br />
+  <center>
+    <video src="video_inicial/recomienda peliculas.mp4" autoplay muted loop width="50%"></video>
+  </center>
+
+  <img src="video_inicial/muchasgracias.jpeg" alt="muchasgracias" width="100%"
+    style="border-radius: 10px; margin-top: 20px" />
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    function recomendar(generos) {
+      let edad = parseFloat(document.getElementById("edad").value);
+      let recomendacion = document.getElementById("recomendacion");
+      let imagen = document.getElementById("imagenPelicula");
+
+      if (isNaN(edad) || edad <= 0) {
+        Swal.fire({
+          icon: "warning",
+          title: "⚠️ Edad inválida",
+          text: "Por favor, ingresa una edad válida",
+          confirmButtonText: "Ok",
+          confirmButtonColor: "#f39c12"
+        });
+        imagen.src = "";
+        recomendacion.innerHTML = "";
+        return;
+      }
+
+      switch (generos) {
+
+        case 'accion':
+          if (edad >= 13) {
+            recomendacion.innerHTML = "Rapidos y furiosos";
+            imagen.src = "video_inicial/rapidosyfuriosos.jpeg";
+
+          } else {
+
+            Swal.fire({
+              icon: "error",
+              title: "🚫 Acceso denegado",
+              text: "No puedes ver esta película",
+              confirmButtonText: "Entendido",
+              confirmButtonColor: "#d33"
+            });
+            imagen.src = "";
+          }
+          break;
+
+        case 'adultos':
+          if (edad >= 18) {
+            recomendacion.innerHTML = "50 Sombras de Grey";
+            imagen.src = "video_inicial/50sombras.jpeg";
+
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "🚫 Acceso denegado",
+              text: "No puedes ver esta película",
+              confirmButtonText: "Entendido",
+              confirmButtonColor: "#d33"
+            });
+            imagen.src = "";
+          }
+          break;
+
+        case 'comedia':
+          if (edad <= 13) {
+            recomendacion.innerHTML = "Mi pobre angelito";
+            imagen.src = "video_inicial/mipobre.jpeg";
+
+          } else if (edad > 13) {
+            recomendacion.innerHTML = "Son como niños";
+            imagen.src = "video_inicial/soncomo.jpeg";
+          }
+          break;
+
+        case 'animada':
+          if (edad <= 13) {
+            recomendacion.innerHTML = "Toy story";
+            imagen.src = "video_inicial/toystori.jpeg";
+          } else if (edad > 13) {
+            recomendacion.innerHTML = "Dragon ball super";
+            imagen.src = "video_inicial/dragonball.jpeg";
+          }
+          break;
+
+
+
+
+        default:
+          recomendacion.innerHTML = "Seleccione un género válido";
+          imagen.src = "";
+      }
+    }
+
+
+  </script>
+</body>
+
+</html>
